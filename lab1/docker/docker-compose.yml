@@ -1,0 +1,29 @@
+version: '2.1'
+services:
+  ATS:
+    image: "annevil/ats-7.1.2:v2"
+    container_name: "http-ats"
+    volumes:
+      - "./ats-etc:/opt/ts-v2/etc/trafficserver"
+      - "./run/ats.sh:/run.sh"
+    ports:
+      - "10000:8080"
+    stdin_open: true
+    tty: true
+    entrypoint: /run.sh
+    
+  nginx:
+    image: "nginx:latest"
+    container_name: "http-nginx"
+    volumes:
+      - "./nginx/default.conf:/etc/nginx/conf.d/default.conf"
+
+  apache2:
+    build: "./apache2"
+    container_name: "http-apache2"
+    volumes:
+      - "./run/apache2.sh:/run.sh"
+      - "/html:/var/www/html"
+    stdin_open: true
+    tty: true
+    entrypoint: /run.sh
