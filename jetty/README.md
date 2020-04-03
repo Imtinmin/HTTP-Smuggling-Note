@@ -1,5 +1,8 @@
 #	Jetty - Http Smuggling
 
+## Referer
+https://regilero.github.io/english/security/2019/04/24/security_jetty_http_smuggling/
+
 ##	Composition
 
 jetty 9.4.9
